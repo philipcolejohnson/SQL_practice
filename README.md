@@ -78,17 +78,38 @@ WHERE continent = 'South America'
 ```
 10.
 ```sql
-
+SELECT name,
+ROUND(gdp / population, -3)
+FROM world
+WHERE gdp > 1000000000000
 ```
 11.
 ```sql
-
+SELECT name,
+       CASE WHEN continent='Oceania' THEN 'Australasia'
+            ELSE continent END
+  FROM world
+ WHERE name LIKE 'N%'
 ```
 12.
 ```sql
-
+SELECT name, CASE
+WHEN continent = 'Europe' OR continent = 'Asia' THEN 'Eurasia'
+WHEN continent = 'North America' OR continent = 'South America' OR continent = 'Caribbean' THEN 'America'
+ELSE continent
+END
+FROM world
+WHERE name LIKE 'A%' OR name LIKE 'B%'
 ```
 13.
 ```sql
-
+SELECT name, continent, CASE
+WHEN continent = 'Oceania' THEN 'Australasia'
+WHEN continent = 'Eurasia' OR name = 'Turkey' THEN 'Europe/Asia'
+WHEN continent = 'Caribbean' AND name LIKE 'B%' THEN 'North America'
+WHEN continent = 'Caribbean' THEN 'South America'
+ELSE continent
+END
+FROM world
+ORDER BY name
 ```
