@@ -117,51 +117,80 @@ ORDER BY name
 ### SELECT from NOBEL
 1.
 ```sql
-
+SELECT yr, subject, winner
+  FROM nobel
+ WHERE yr = 1950
 ```
 2.
 ```sql
-
+SELECT winner
+  FROM nobel
+ WHERE yr = 1962
+   AND subject = 'Literature'
 ```
 3.
 ```sql
-
+SELECT yr, subject
+  FROM nobel
+ WHERE winner = 'Albert Einstein'
 ```
 4.
 ```sql
-
+SELECT winner
+  FROM nobel
+ WHERE subject = 'Peace' AND yr > 1999
 ```
 5.
 ```sql
-
+SELECT *
+  FROM nobel
+ WHERE subject = 'Literature' AND yr BETWEEN 1980 AND 1989
 ```
 6.
 ```sql
-
+SELECT *
+FROM nobel
+WHERE winner IN ('Theodore Roosevelt',
+                  'Woodrow Wilson',
+                  'Jimmy Carter')
 ```
 7.
 ```sql
-
+SELECT winner
+FROM nobel
+WHERE winner LIKE 'John%'
 ```
 8.
 ```sql
-
+SELECT *
+FROM nobel
+WHERE (subject = 'Physics' AND yr = 1980) OR
+  (subject = 'Chemistry' AND yr = 1984)
 ```
 9.
 ```sql
-
+SELECT *
+FROM nobel
+WHERE yr = 1980 AND subject <> 'Chemistry'AND subject <> 'Medicine'
 ```
 10.
 ```sql
-
+SELECT *
+FROM nobel
+WHERE (yr < 1910 AND subject = 'Medicine')
+  OR (yr > 2003 AND subject = 'Literature')
 ```
 11.
 ```sql
-
+SELECT *
+FROM nobel
+WHERE winner = 'Peter Grünberg'
 ```
 12.
 ```sql
-
+SELECT *
+FROM nobel
+WHERE winner = 'Eugene O''Neill'
 ```
 13.
 ```sql
