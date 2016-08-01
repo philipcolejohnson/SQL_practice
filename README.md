@@ -505,11 +505,15 @@ SELECT name, CONCAT(ROUND(population / (
 FROM world
 WHERE continent = 'Europe'
 ```
-
-
 6.
 ```sql
-
+SELECT name
+FROM world
+WHERE gdp > ALL (
+ SELECT gdp
+ FROM world
+ WHERE gdp > 0 AND continent = 'Europe'
+)
 ```
 7.
 ```sql
