@@ -331,24 +331,57 @@ WHERE title = 'Casablanca'
 ```
 7.
 ```sql
+SELECT name
+FROM movie JOIN casting ON movie.id = movieid
+JOIN actor ON actorid = actor.id
+WHERE casting.movieid = 11768
 ```
 8.
 ```sql
+SELECT name
+FROM movie JOIN casting ON movie.id = movieid
+JOIN actor ON actorid = actor.id
+WHERE title = 'Alien'
 ```
 9.
 ```sql
+SELECT title
+FROM movie JOIN casting ON movie.id = movieid
+JOIN actor ON actorid = actor.id
+WHERE name = 'Harrison Ford' 
 ```
 10.
 ```sql
+SELECT title
+FROM movie JOIN casting ON movie.id = movieid
+JOIN actor ON actorid = actor.id
+WHERE name = 'Harrison Ford'  AND ord <> 1
 ```
 11.
 ```sql
+SELECT title, name
+FROM movie JOIN casting ON movie.id = movieid
+JOIN actor ON actorid = actor.id
+WHERE ord = 1 AND yr = 1962
 ```
 12.
 ```sql
+SELECT yr,COUNT(title) FROM
+  movie JOIN casting ON movie.id=movieid
+         JOIN actor   ON actorid=actor.id
+WHERE name='John Travolta'
+GROUP BY yr
+HAVING COUNT(title)=(SELECT MAX(c) FROM
+(SELECT yr,COUNT(title) AS c FROM
+   movie JOIN casting ON movie.id=movieid
+         JOIN actor   ON actorid=actor.id
+ WHERE name='John Travolta'
+ GROUP BY yr) AS t
+)
 ```
 13.
 ```sql
+
 ```
 14.
 ```sql
