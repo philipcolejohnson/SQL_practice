@@ -194,9 +194,15 @@ WHERE winner = 'Eugene O''Neill'
 ```
 13.
 ```sql
-
+SELECT winner, yr, subject
+FROM nobel
+WHERE winner LIKE 'Sir%'
+ORDER BY yr DESC, winner
 ```
 14.
 ```sql
-
+SELECT winner, subject
+  FROM nobel
+ WHERE yr=1984
+ ORDER BY  subject IN ('Physics','Chemistry'), subject, winner
 ```
