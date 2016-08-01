@@ -257,21 +257,37 @@ SELECT DISTINCT player
 ```
 9.
 ```sql
-
+SELECT teamname, count(*) as goals
+  FROM eteam JOIN goal ON id=teamid
+ GROUP BY teamname
 ```
 10.
 ```sql
-
+SELECT stadium, count(*) as goals
+  FROM game JOIN goal ON id=matchid
+ GROUP BY stadium
 ```
 11.
 ```sql
-
+SELECT matchid, mdate, count(*) as goals
+FROM game JOIN goal ON matchid = id 
+WHERE (team1 = 'POL' OR team2 = 'POL')
+GROUP BY matchid, mdate  
 ```
 12.
 ```sql
-
+SELECT matchid, mdate, count(*) as goals
+FROM game JOIN goal ON matchid = id 
+WHERE teamid = 'GER'
+GROUP BY matchid, mdate
 ```
 13.
 ```sql
-
+SELECT mdate,
+  team1,
+  sum(CASE WHEN teamid=team1 THEN 1 ELSE 0 END) score1,
+  team2,
+  sum(CASE WHEN teamid=team2 THEN 1 else 0 END) score2
+FROM game LEFT JOIN goal ON matchid = id
+GROUP BY mdate, matchid, team1, team2
 ```
