@@ -614,4 +614,73 @@ FROM teacher
 ```
 
 
+### Using NULL
+1.
+```sql
+SELECT COUNT(*)
+FROM stops
+```
+2.
+```sql
+SELECT id
+FROM stops
+WHERE name = 'Craiglockhart'
+```
+3.
+```sql
+SELECT id, name
+FROM stops JOIN route ON stop = id
+WHERE num = 4 AND company = 'LRT'
+```
+4.
+```sql
+SELECT company, num, COUNT(*)
+FROM route WHERE stop=149 OR stop=53
+GROUP BY company, num
+HAVING COUNT(*) > 1
+```
+5. 
+```sql
+SELECT a.company, a.num, a.stop, b.stop
+FROM route a JOIN route b ON
+  (a.company=b.company AND a.num=b.num)
+WHERE a.stop=53 AND b.stop = 149
+```
+6.
+```sql
+SELECT a.company, a.num, stopa.name, stopb.name
+FROM route a JOIN route b ON
+  (a.company=b.company AND a.num=b.num)
+  JOIN stops stopa ON (a.stop=stopa.id)
+  JOIN stops stopb ON (b.stop=stopb.id)
+WHERE stopa.name='Craiglockhart' AND stopb.name='London Road'
+```
+7.
+```sql
+SELECT DISTINCT a.company, a.num
+ FROM route a JOIN route b ON 
+ (a.company=b.company AND a.num=b.num)
+ WHERE a.stop = 115 and b.stop = 137
+```
+8.
+```sql
+SELECT DISTINCT a.company, a.num
+ FROM route a JOIN route b ON 
+ (a.company=b.company AND a.num=b.num)
+ JOIN stops astop ON astop.id = a.stop
+ JOIN stops bstop ON bstop.id = b.stop
+ WHERE astop.name = 'Craiglockhart' and bstop.name = 'Tollcross'
+```
+9.
+```sql
+SELECT bstop.name, a.company, a.num
+FROM route a JOIN route b ON 
+ (a.company=b.company AND a.num=b.num)
+ JOIN stops astop ON astop.id = a.stop
+ JOIN stops bstop ON bstop.id = b.stop
+WHERE astop.name = 'Craiglockhart'
+```
+10.
+```sql
 
+```
