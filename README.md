@@ -517,9 +517,32 @@ WHERE gdp > ALL (
 ```
 7.
 ```sql
-
+SELECT continent, name, area
+FROM world x
+WHERE area >= ALL (SELECT area FROM world y
+  WHERE y.continent = x.continent AND area > 0)
 ```
 8.
 ```sql
-
+SELECT continent, name
+FROM world x
+WHERE name <= ALL (SELECT name FROM world y
+  WHERE y.continent = x.continent)
+```
+9.
+```sql
+SELECT name, continent, population
+FROM world x
+WHERE
+  25000000 >= ALL (SELECT population
+    FROM world y
+    WHERE (y.continent = x.continent) AND population > 0)
+```
+10.
+```sql
+SELECT name, continent
+FROM world x
+WHERE population >= ALL (SELECT population * 3
+    FROM world y
+    WHERE (y.continent = x.continent) AND (y.name <> x.name) AND population > 0)
 ```
