@@ -291,3 +291,71 @@ SELECT mdate,
 FROM game LEFT JOIN goal ON matchid = id
 GROUP BY mdate, matchid, team1, team2
 ```
+
+### More JOIN
+1.
+```sql
+SELECT id, title
+ FROM movie
+ WHERE yr=1962
+```
+2.
+```sql
+SELECT yr
+FROM movie
+WHERE title = 'Citizen Kane'
+```
+3.
+```sql
+SELECT id, title, yr
+FROM movie
+WHERE title LIKE '%Star Trek%'
+```
+4.
+```sql
+SELECT title
+FROM movie
+WHERE id in (11768, 11955, 21191)
+```
+5.
+```sql
+SELECT id
+FROM actor
+WHERE name = 'Glenn Close'
+```
+6.
+```sql
+SELECT id
+FROM movie
+WHERE title = 'Casablanca'
+```
+7.
+```sql
+```
+8.
+```sql
+```
+1.
+```sql
+```
+2.
+```sql
+```
+3.
+```sql
+```
+4.
+```sql
+```
+1.
+```sql
+```
+2.
+```sql
+```
+3.
+```sql
+```
+4.
+```sql
+```
