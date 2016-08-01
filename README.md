@@ -465,27 +465,48 @@ GROUP BY continent
 HAVING SUM(population) >= 100000000
 ```
 
-### SUM and COUNT
+### SELECT within SELECT
 1.
 ```sql
-
+SELECT name FROM world
+  WHERE population >
+     (SELECT population FROM world
+      WHERE name='Russia')
 ```
 2.
 ```sql
-
+SELECT name
+FROM world
+WHERE continent = 'Europe'
+AND gdp/population >  (SELECT gdp/population FROM world WHERE name = 'United Kingdom')
 ```
 3.
 ```sql
-
+SELECT name, continent
+FROM world
+WHERE continent IN (SELECT continent
+ FROM world
+ WHERE name IN ('Argentina', 'Australia'))
+ORDER BY name
 ```
 4.
 ```sql
-
+SELECT name, population
+FROM world
+WHERE population > (SELECT population FROM world WHERE name = 'Canada') AND population < (SELECT population FROM world WHERE name = 'Poland')
 ```
 5. 
 ```sql
-
+SELECT name, CONCAT(ROUND(population / (
+ SELECT population
+ FROM world
+ WHERE name = 'Germany'
+) * 100, 0), '%')
+FROM world
+WHERE continent = 'Europe'
 ```
+
+
 6.
 ```sql
 
