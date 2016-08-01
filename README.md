@@ -379,16 +379,38 @@ HAVING COUNT(title)=(SELECT MAX(c) FROM
  GROUP BY yr) AS t
 )
 ```
-13.
+13. TODO:
 ```sql
-
+SELECT title, name
+FROM casting JOIN movie ON movieid = movie.id
+  JOIN actor ON actorid = actor.id
+  WHERE ord = 1 AND
+    movieid in (SELECT movieid FROM actor JOIN casting ON
+    id = actorid
+    WHERE name = 'Julie Andrews')
 ```
 14.
 ```sql
+SELECT name
+FROM actor JOIN casting ON id = actorid
+WHERE ord = 1
+GROUP BY name
+HAVING COUNT(movieid) > 29
 ```
 15.
 ```sql
+SELECT title, COUNT(actorid)
+FROM movie JOIN casting ON id = movieid
+WHERE yr = 1978
+GROUP BY id, title
+ORDER BY 2 DESC
 ```
 16.
 ```sql
+SELECT name
+FROM actor JOIN casting ON id = actorid
+WHERE name <> 'Art Garfunkel' AND
+  movieid in (SELECT movieid FROM actor JOIN casting
+  ON id = actorid
+  WHERE name = 'Art Garfunkel')
 ```
